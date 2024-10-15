@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform crosshair;
     [SerializeField] private Transform target;
     [SerializeField] private LayerMask layerMask;
+    Plane plane = new Plane(Vector3.up, 0);
 #endregion 
 
 #region Singleton
@@ -83,14 +84,11 @@ public class UIManager : MonoBehaviour
         Vector2 mousePos = mouseAction.ReadValue<Vector2>();
         // Debug.Log(mousePos); // (1920x1080, screenspace coordinates)
 
-        // FIXME: Move the crosshair position to the mouse position (in world coordinates)
-        Camera camera = Camera.main;
-        Ray ray = camera.ScreenPointToRay(mousePos);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000, layerMask))
+        float distance;
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (plane.Raycast(ray, out distance))
         {
-            // Debug.Log(hit.point);
-            crosshair.position = hit.point;
+            crosshair.position = ray.GetPoint(distance);
         }
     }
 
