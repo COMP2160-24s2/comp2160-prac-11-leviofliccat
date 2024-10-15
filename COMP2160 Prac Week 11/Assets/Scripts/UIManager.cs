@@ -88,7 +88,9 @@ public class UIManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (plane.Raycast(ray, out distance))
         {
-            crosshair.position = ray.GetPoint(distance);
+            // crosshair.position = ray.GetPoint(distance);
+            Vector3 screenPos = ray.GetPoint(distance);
+            crosshair.position = screenPos + new Vector3(deltaAction.ReadValue<Vector2>().x, deltaAction.ReadValue<Vector2>().y, 0);
         }
     }
 
