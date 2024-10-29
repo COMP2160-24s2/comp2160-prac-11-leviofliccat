@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
             if (plane.Raycast(ray, out distance))
             {
                 screenPos = ray.GetPoint(distance);
-                Debug.Log(screenPos + " " + Camera.main.ScreenToWorldPoint(Camera.main.rect.max));
+                // Debug.Log(screenPos + " " + Camera.main.ScreenToWorldPoint(Camera.main.rect.max));
                 
                 crosshair.position = screenPos;
                 

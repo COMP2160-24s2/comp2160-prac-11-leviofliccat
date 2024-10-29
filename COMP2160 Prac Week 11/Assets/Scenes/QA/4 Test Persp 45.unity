@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 44316912}
+  targetObjectSecond: {fileID: 1704060031}
+  step: 2
 --- !u!4 &6909032
 Transform:
   m_ObjectHideFlags: 0
@@ -729,6 +731,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184f488bf1486423baadff9ee0a0bade, type: 3}
+--- !u!1 &1704060031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8113048059478323343, guid: b96044efa2ae54750ad24e39e1352865,
+    type: 3}
+  m_PrefabInstance: {fileID: 331283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &2408856355099670849
 Camera:
   m_ObjectHideFlags: 0
