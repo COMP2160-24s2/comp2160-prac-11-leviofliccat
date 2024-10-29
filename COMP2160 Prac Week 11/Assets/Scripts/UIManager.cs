@@ -82,8 +82,6 @@ public class UIManager : MonoBehaviour
 
     private void MoveCrosshair() 
     {
-       
-
         Vector2 mousePos = mouseAction.ReadValue<Vector2>();
         // Debug.Log(mousePos); // (1920x1080, screenspace coordinates)
 
@@ -107,8 +105,12 @@ public class UIManager : MonoBehaviour
             if (plane.Raycast(ray, out distance))
             {
                 screenPos = ray.GetPoint(distance);
+                Debug.Log(screenPos + " " + Camera.main.ScreenToWorldPoint(Camera.main.rect.max));
                 
                 crosshair.position = screenPos;
+                
+
+                
             }
 
         }

@@ -5,6 +5,10 @@ using UnityEngine;
 public class Follower : MonoBehaviour
 {
     [SerializeField] private GameObject targetObject;
+    [SerializeField] private GameObject targetObjectSecond;
+    [SerializeField] private float step;
+
+
 
     private float radius;
     void Start()
@@ -15,7 +19,8 @@ public class Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = targetObject.transform.position;
+        // transform.position = targetObject.transform.position;
+        transform.position = Vector3.MoveTowards(targetObject.transform.position , targetObjectSecond.transform.position ,step);
     }
 
     void OnDrawGizmos()
