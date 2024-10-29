@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform crosshair;
     [SerializeField] private Transform target;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private bool newBehaviour;
     Plane plane = new Plane(Vector3.up, 0);
 #endregion 
 
@@ -81,16 +82,35 @@ public class UIManager : MonoBehaviour
 
     private void MoveCrosshair() 
     {
+       
+
         Vector2 mousePos = mouseAction.ReadValue<Vector2>();
         // Debug.Log(mousePos); // (1920x1080, screenspace coordinates)
 
         float distance;
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        if (plane.Raycast(ray, out distance))
+
+        if (newBehaviour == false) 
         {
-            // crosshair.position = ray.GetPoint(distance);
-            Vector3 screenPos = ray.GetPoint(distance);
-            crosshair.position = screenPos + new Vector3(deltaAction.ReadValue<Vector2>().x, deltaAction.ReadValue<Vector2>().y, 0);
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            if (plane.Raycast(ray, out distance))
+            {
+                crosshair.position = ray.GetPoint(distance);
+            }
+        }
+        else 
+        {
+            Vector3 deltaPos = deltaAction.ReadValue<Vector2>(); //world?
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(crosshair.position);
+            screenPos += deltaPos;
+
+            Ray ray = Camera.main.ScreenPointToRay(screenPos);
+            if (plane.Raycast(ray, out distance))
+            {
+                screenPos = ray.GetPoint(distance);
+                
+                crosshair.position = screenPos;
+            }
+
         }
     }
 

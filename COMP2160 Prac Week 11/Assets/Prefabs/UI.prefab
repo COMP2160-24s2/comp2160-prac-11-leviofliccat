@@ -51,6 +51,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  newBehaviour: 1
 --- !u!1 &3945490509769068079
 GameObject:
   m_ObjectHideFlags: 0
